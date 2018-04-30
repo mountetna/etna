@@ -1,4 +1,4 @@
-describe Etna::Route do
+describe Etna::Server do
   include Rack::Test::Methods
 
   attr_reader :app
@@ -28,6 +28,17 @@ describe Etna::Route do
 
     get '/silk'
 
+    expect(last_response.status).to eq(200)
+    expect(last_response.body).to eq('ok')
+  end
+
+  it 'should allow route definitions with #using' do
+    # define the silk route, but set the default action with #using
+    Arachne::Server.using(action: 'web#silk') do
+      get '/silk'
+    end
+    @app = setup_app(Arachne::Server.new(test: {}))
+    get '/silk'
     expect(last_response.status).to eq(200)
     expect(last_response.body).to eq('ok')
   end
