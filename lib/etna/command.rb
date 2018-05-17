@@ -14,7 +14,7 @@ module Etna
 
     # To be overridden during inheritance.
     def execute
-      raise 'Command is not implemented'
+      raise 'Command is not implemented.'
     end
 
     # To be overridden during inheritance, to e.g. connect to a database.

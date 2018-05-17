@@ -42,7 +42,7 @@ module Etna::Application
   def run_command(config, cmd = :help, *args)
     cmd = cmd.to_sym
     if commands.key?(cmd)
-      commands[cmd].setup(config)
+      commands[cmd].setup(config, *args)
       commands[cmd].execute(*args)
     else
       commands[:help].execute
